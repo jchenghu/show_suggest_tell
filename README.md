@@ -8,6 +8,7 @@ Implementation code for "[Diffusion Is Your Friend in Show, Suggest and Tell](up
 
 ```
 conda create -n env_sst
+conda activate env_sst
 # we tested on python=3.10, these are the main packages:
 python -m pip install torch torchvision h5py numpy
 ```
@@ -115,7 +116,7 @@ Weights mentioned in the paper can be found [here](update_when_ready).
 ### Examples
 
 <p align="center">
-  <img src="./example_results.png" width="300"/>
+  <img src="./example_results.png" width="330"/>
 </p>
 
 
