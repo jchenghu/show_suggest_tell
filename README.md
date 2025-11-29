@@ -27,6 +27,12 @@ and the backbone can be found [here](https://github.com/microsoft/Swin-Transform
 the `dataset_coco.json` file. The backbone is suggested to be moved in `github_ignore_materal/raw_data/` since commands provided
 in the following steps assume these files are placed in that directory.
 
+Give permission to download stanford model during evaluation (will be automatically handled later, but requires permission).
+```
+chmod a+x eval/get_stanford_models.sh
+```
+
+
 The following commands will generate the MS-COCO image features in `features.hdf5`.
 ```
 cd show_suggest_tell
@@ -109,7 +115,7 @@ Weights mentioned in the paper can be found [here](update_when_ready).
 ### Examples
 
 <p align="center">
-  <img src="./example_results.png" width="550"/>
+  <img src="./example_results.png" width="300"/>
 </p>
 
 
