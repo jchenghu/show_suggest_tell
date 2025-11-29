@@ -228,7 +228,7 @@ def train(rank,
                     save_last_checkpoint(ddp_model.module, optimizer, sched,
                                          AR_data_loader, path_args.save_path,
                                          num_max_checkpoints=train_args.how_many_checkpoints,
-                                         prefix=val_cider_score,
+                                         prefix=str(val_cider_score),
                                          additional_info='rf' if train_args.reinforce else 'xe')
                     print("Saved interesting checkpoint, evaluating test set.")
 
