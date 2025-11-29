@@ -1,0 +1,7 @@
+/github_ignore_material/raw_data/*
+!/github_ignore_material/raw_data/.gitkeep
+/github_ignore_material/saves_prediction_model/*
+/github_ignore_material/saves_suggestion_module/*
+!/github_ignore_material/saves_prediction_model/.gitkeep
+!/github_ignore_material/saves_suggestion_module/.gitkeep
+**/__pycache__/*
