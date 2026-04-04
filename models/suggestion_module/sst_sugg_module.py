@@ -182,7 +182,7 @@ class SST_Sugg_Module(BaseSuggestionModule):
         x_0_ignore[torch.bitwise_not(mask)] = -1
         return x_t, x_0_ignore, mask
 
-    def diffuse_absorbing(self, cross_input, enc_input_num_pads, dec_input, dec_input_num_pads,
+    def diffusion_train(self, cross_input, enc_input_num_pads, dec_input, dec_input_num_pads,
                           apply_log_softmax=False):
 
         bs, num_ngrams, k_gram = dec_input.shape

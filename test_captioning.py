@@ -149,12 +149,10 @@ def evaluate_model(ddp_model,
                 for single_pred in batch_pred:
                     # single_pred: [num_ngrams, k_gram]
                     single_pred_ngram = []
-                    batch_ngrams_num_len.append(len(single_pred))
                     for ngram in single_pred:
-                        # FACCIO POOLING IN TOKENS UNIVOCI....
-                        # if dataset.check_ngram_in_vocab(ngram):
-                        if dataset.check_ngram_in_vocab(ngram): # and (not ngram in single_pred_ngram):
-                            single_pred_ngram.append(ngram)
+                        if dataset.check_ngram_in_vocab(ngram) and (torch.tensor(ngram) not in single_pred_ngram):
+                            single_pred_ngram.append(torch.tensor(ngram))
+                    batch_ngrams_num_len.append(len(single_pred_ngram))
                     if len(single_pred_ngram) == 0:
                         single_pred_ngram = [torch.tensor(
                             [dataset.caption_word2idx_dict['PAD'] for _ in range(dataset.k_gram)]),
@@ -165,6 +163,8 @@ def evaluate_model(ddp_model,
                         single_pred_ngram = torch.tensor(single_pred_ngram)
                     # [num_ngrams * k_gram]
                     batch_ngrams.append(single_pred_ngram)
+                if sb_it == 0:
+                    print("Esempio batch_ngram: " + str(batch_ngrams))
                 batch_ngrams = torch.nn.utils.rnn.pad_sequence(
                     batch_ngrams, batch_first=True,
                     padding_value=dataset.get_pad_token_idx()).to(rank)

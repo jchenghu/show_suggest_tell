@@ -110,12 +110,11 @@ def train(rank,
                     for single_pred in batch_pred:
                         # single_pred: [num_ngrams, k_gram]
                         single_pred_ngram = []
-                        batch_ngrams_num_len.append(len(single_pred))
                         for ngram in single_pred:
                             #if AR_coco_dataset.check_ngram_in_vocab(ngram):
-                            if AR_coco_dataset.check_ngram_in_vocab(ngram): # and (not ngram in single_pred_ngram):
-                                single_pred_ngram.append(ngram)
-
+                            if AR_coco_dataset.check_ngram_in_vocab(ngram) and (torch.tensor(ngram) not in single_pred_ngram):
+                                single_pred_ngram.append(torch.tensor(ngram))
+                        batch_ngrams_num_len.append(len(single_pred))
                         if len(single_pred_ngram) == 0:
                             single_pred_ngram = [torch.tensor([AR_coco_dataset.caption_word2idx_dict['PAD'] for _ in range(train_args.selected_n_gram)]),
                                                  torch.tensor([AR_coco_dataset.caption_word2idx_dict['PAD'] for _ in
@@ -202,7 +201,7 @@ def train(rank,
                 prev_print_iter = it + 1
 
         MIN_EPOCHS_SAVE_THRESHOLD = 4
-        INTERESTING_SCORE_THRESHOLD = 1.23
+        INTERESTING_SCORE_THRESHOLD = 1.244
         if (((it + 1) % AR_data_loader.get_num_batches() == 0) or (it + 1) % train_args.eval_every_iter == 0) \
                 and AR_data_loader.get_epoch_it() >= MIN_EPOCHS_SAVE_THRESHOLD:
 

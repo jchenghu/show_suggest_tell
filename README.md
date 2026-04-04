@@ -1,16 +1,16 @@
 ### Diffusion Is Your Friend in Show, Suggest, and Tell
 
-Implementation code for "[Diffusion Is Your Friend in Show, Suggest and Tell](update_when_ready)" [ [BigData2025](update_when_ready) ]
+Implementation code for "[Diffusion Is Your Friend in Show, Suggest and Tell](update_when_ready)" [ [BigData2026](update_when_ready) ]
 [ [Arxiv](update_when_ready) ]. <br>
 
 
 ### Requirements
 
 ```
-conda create -n env_sst
+conda create -n env_sst python=3.10
 conda activate env_sst
 # we tested on python=3.10, these are the main packages:
-python -m pip install torch torchvision h5py numpy
+python3.10 -m pip install torch torchvision h5py numpy
 ```
 
 
@@ -37,7 +37,7 @@ chmod a+x eval/get_stanford_models.sh
 The following commands will generate the MS-COCO image features in `features.hdf5`.
 ```
 cd show_suggest_tell
-python data_generator.py \
+python3.10 data_generator.py \
     --save_model_path ./github_ignore_material/raw_data/swin_large_patch4_window12_384_22k.pth \
     --output_path ./github_ignore_material/raw_data/features.hdf5 \
     --images_path ./github_ignore_material/raw_data/MS_COCO_2014/ \
@@ -49,7 +49,7 @@ Note that it will take 50 GB of space.
 #### Train Step 1) Suggestion Module Training
 
 ```
-python train_suggestion_module.py \
+python3.10 train_suggestion_module.py \
 
     --N_enc 3 --N_dec 3  \
     --selected_n_gram 1 \
@@ -72,7 +72,7 @@ Now that the prediction module is ready, we can proceed to train the prediction 
 Replace `<suggestion_module_checkpoint>` with the actual checkpoint of the previous step:
 
 ```
-python train_captioning_model.py \
+python3.10 train_captioning_model.py \
 
         --N_enc 3 --N_dec 3  \
         --selected_n_gram 1 \
@@ -93,7 +93,7 @@ python train_captioning_model.py \
 
 Evaluating the suggestion module, located in `<suggestion_module_checkpoint>`
 ```
-python test_suggestion_module.py \
+python3.10 test_suggestion_module.py \
         --N_enc 3 --N_dec 3 --selected_n_gram 1 \
         --model_dim 128 --ddp_sync_port 11330 \
         --save_path ./github_ignore_material/saves_suggestion_module/<suggestion_module_checkpoint> \
@@ -102,7 +102,7 @@ python test_suggestion_module.py \
 
 Evaluating the SST in `<caption_model_checkpoint>` generated from the second training step.
 ```
-python test_captioning.py \
+python3.10 test_captioning.py \
         --N_enc 3 --N_dec 3 --selected_n_gram 1 \
         --model_dim 512 --ddp_sync_port 11330 \
         --save_sst_path ./github_ignore_material/saves_prediction_model/<caption_model_checkpoint> \
@@ -124,7 +124,21 @@ Weights mentioned in the paper can be found [here](update_when_ready).
 
 If you find this repository useful, please consider citing (no obligation):
 ```
-<to appear>
+@INPROCEEDINGS {11400981,
+author = { Hu, Jia Cheng and Cavicchioli, Roberto and Capotondi, Alessandro },
+booktitle = { 2025 IEEE International Conference on Big Data (BigData) },
+title = {{ Diffusion is Your Friend in Show, Suggest and Tell }},
+year = {2025},
+volume = {},
+ISSN = {},
+pages = {5142-5151},
+abstract = {},
+keywords = {Uniform resource locators;Noise reduction;Refining;Reinforcement learning;Predictive models;Linguistics;Diffusion models;Proposals;Feeds;Standards},
+doi = {10.1109/BigData66926.2025.11400981},
+url = {https://doi.ieeecomputersociety.org/10.1109/BigData66926.2025.11400981},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+month =Dec}
 ```
 
 

@@ -45,7 +45,7 @@ class BaseSuggestionModule(nn.Module):
                 mode='forward', **kwargs):
         if mode == 'diffusion_train':
             x = self.forward_enc(enc_x, enc_x_num_pads)
-            diffuse_dict = self.diffuse_absorbing(x, enc_x_num_pads, dec_x, dec_x_num_pads, apply_log_softmax)
+            diffuse_dict = self.diffusion_train(x, enc_x_num_pads, dec_x, dec_x_num_pads, apply_log_softmax)
             return diffuse_dict
         else:
             assert ('sos_idx' in kwargs.keys() or 'eos_idx' in kwargs.keys()), \
