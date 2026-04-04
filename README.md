@@ -124,7 +124,7 @@ Weights mentioned in the paper can be found [here](update_when_ready).
 
 If you find this repository useful, please consider citing (no obligation):
 ```
-@INPROCEEDINGS {11400981,
+@InProceedings{diffusion2024hu,
 author = { Hu, Jia Cheng and Cavicchioli, Roberto and Capotondi, Alessandro },
 booktitle = { 2025 IEEE International Conference on Big Data (BigData) },
 title = {{ Diffusion is Your Friend in Show, Suggest and Tell }},
