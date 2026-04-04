@@ -1,7 +1,7 @@
 ### Diffusion Is Your Friend in Show, Suggest, and Tell
 
-Implementation code for "[Diffusion Is Your Friend in Show, Suggest and Tell](update_when_ready)" [ [BigData2026](update_when_ready) ]
-[ [Arxiv](update_when_ready) ]. <br>
+Implementation code for "[Diffusion Is Your Friend in Show, Suggest and Tell](https://arxiv.org/pdf/2512.10038)" [ [BigData2026](https://www.computer.org/csdl/proceedings-article/bigdata/2025/11400981/2eDsZlyAFnG) ]
+[ [Arxiv](https://arxiv.org/pdf/2512.10038) ]. <br>
 
 
 ### Requirements
